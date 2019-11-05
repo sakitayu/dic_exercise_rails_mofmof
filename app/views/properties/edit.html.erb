@@ -1,5 +1,44 @@
 <h1>物件編集</h1>
 
-<%= render 'form' %>
+<%= form_for @property, url: choose_new_or_edit do |form| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @property.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="property_name">
+    <%= form.label :name, "物件名" %>
+    <br>
+    <%= form.text_field :name %>
+  </div>
+  <div class="property_price">
+    <%= form.label :price, "賃料" %>
+    <br>
+    <%= form.text_field :price %>円
+  </div>
+  <div class="property_address">
+    <%= form.label :address, "住所" %>
+    <br>
+    <%= form.text_field :address %>
+  </div>
+  <div class="property_age">
+    <%= form.label :age, "築年数" %>
+    <br>
+    <%= form.text_field :age %>年
+  </div>
+  <div class="property_option">
+    <%= form.label :option, "備考" %>
+    <br>
+    <%= form.text_area :option %>
+  </div>
+  <%= form.submit "更新する" %>
+<% end %>
 
 <%= link_to '詳細', property_path(@property.id) %> | <%= link_to '戻る', :back %>
