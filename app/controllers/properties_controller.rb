@@ -11,6 +11,7 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @station.property_id = @property.id
     if @property.save
       redirect_to properties_path
     else
@@ -39,6 +40,7 @@ class PropertiesController < ApplicationController
 
   def confirm
     @property = Property.new(property_params)
+    @station.property_id = @property.id
   end
 
   private

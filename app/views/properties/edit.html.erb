@@ -38,6 +38,23 @@
     <br>
     <%= form.text_area :option %>
   </div>
+  <hr>
+  <div class="station_route_name">
+    <%= form.label :route_name, "路線名" %>
+    <br>
+    <%= form.text_field :route_name %>
+  </div>
+  <div class="station_station_name">
+    <%= form.label :station_name, "駅名" %>
+    <br>
+    <%= form.text_field :station_name %>
+  </div>
+  <div class="station_span">
+    <%= form.label :span, "徒歩分数" %>
+    <br>
+    <%= form.text_area :span %>分
+  </div>
+
   <%= form.submit "更新する" %>
 <% end %>
 
