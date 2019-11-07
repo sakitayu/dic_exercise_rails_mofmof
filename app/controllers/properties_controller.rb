@@ -7,11 +7,12 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @property.stations.build
   end
 
   def create
     @property = Property.new(property_params)
-    @station.property_id = @property.id
+    # @property.stations.build
     if @property.save
       redirect_to properties_path
     else
@@ -40,13 +41,16 @@ class PropertiesController < ApplicationController
 
   def confirm
     @property = Property.new(property_params)
-    @station.property_id = @property.id
+    # @property.stations.build
   end
 
   private
 
   def property_params
-    params.require(:property).permit(:name, :age, :price, :address, :age, :option)
+    params.require(:property).permit(
+      :name, :age, :price, :address, :option,
+      stations_attributes: [:id, :station_name, :route_name, :span]
+      )
   end
 
   def set_property
