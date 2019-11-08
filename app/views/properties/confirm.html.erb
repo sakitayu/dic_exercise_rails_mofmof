@@ -1,0 +1,37 @@
+<h3>以下の内容で登録しますか？</h3>
+
+<%= form_for @property do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :price %>
+  <%= form.hidden_field :address %>
+  <%= form.hidden_field :age %>
+  <%= form.hidden_field :option %>
+
+  <p>物件名:<%= @property.name %></p>
+  <p>賃料:<%= @property.price.to_s %>円</p>
+  <p>住所:<%= @property.address %></p>
+  <p>築年数:<%= @property.age %>円</p>
+  <p>備考:<%= @property.option %></p>
+
+  <h2>最寄り駅1</h2>
+
+  <%= form.fields_for :stations do |station| %>
+    <%= station.hidden_field :route_name %>
+    <%= station.hidden_field :station_name %>
+    <%= station.hidden_field :span %>
+  <% end %>
+
+  <p>路線名:<%= @property.stations[0].route_name %></p>
+  <p>駅名:<%= @property.stations[0].station_name %></p>
+  <p>徒歩分数:<%= @property.stations[0].span %>分</p>
+
+  <h2>最寄り駅2</h2>
+
+  <p>路線名:<%= @property.stations[1].route_name %></p>
+  <p>駅名:<%= @property.stations[1].station_name %></p>
+  <p>徒歩分数:<%= @property.stations[1].span %>分</p>
+
+  <%= form.submit  "登録する" %>
+<% end %>
+
+<%= link_to '戻る', :back %>
