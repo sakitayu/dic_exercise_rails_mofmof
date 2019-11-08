@@ -40,7 +40,6 @@
   </div>
 
   <% n = 1 %>
-  <% n2 = 0 %>
   <%= form.fields_for :stations do |station| %>
     <h2>最寄り駅<%= n %></h2>
     <div>
@@ -58,19 +57,10 @@
       <br>
       <%= station.text_field :span %>
     </div>
-    <% unless @property.stations[n2].id == nil %>
-    <%= link_to '削除', property_station_path(@property.id, @property.stations[n2].id), method: :delete %>
-    <% end %>
     <% n += 1 %>
-    <% n2 += 1 %>
   <% end %>
   <br>
-  <br>
-  <%= link_to '最寄り駅情報を追加する', add_property_path(@property.id) %>
-  <br>
-  <br>
-  <div><%= form.submit "更新する" %></div>
-  <br>
+  <%= form.submit "更新する" %>
 <% end %>
-
-<%= link_to '詳細', property_path(@property.id) %> | <%= link_to '戻る', properties_path %>
+<br>
+<%= link_to '詳細', property_path(@property.id) %> | <%= link_to '戻る', :back %>

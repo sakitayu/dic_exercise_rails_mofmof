@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: [:show, :edit, :update, :destroy, :add]
 
   def index
     @properties = Property.all
@@ -23,7 +23,6 @@ class PropertiesController < ApplicationController
   end
 
   def edit
-    @property.stations.build
   end
 
   def update
@@ -41,6 +40,10 @@ class PropertiesController < ApplicationController
 
   def confirm
     @property = Property.new(property_params)
+  end
+
+  def add
+    @property.stations.build
   end
 
   private
